@@ -1,0 +1,18 @@
+Pos lastGoodPos = StartPos;
+
+Update(){
+  if(Player.InMoveRange()){
+    Rotate(GetDirTo(Player));
+    MoveToward(Player);
+    if(Collision()){
+      MoveTo(lastGoodPos);
+    }
+    else{
+      lastGoodPos = CurrPos();
+    }
+  }
+  
+  if(Player.InAttackRange() and not IsAttacking()){
+    Attack();
+  }
+}
